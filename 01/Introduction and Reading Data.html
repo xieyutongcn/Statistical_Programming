@@ -7617,7 +7617,41 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-sas"><pre><span></span><span class="c">/* This is my first SAS program! */</span>
+
 <span class="c">* This is my first SAS program! ;</span>
+
+<span class="cm">/*</span>
+<span class="cm">    This is also fine. </span>
+<span class="cm">*/</span>
+
+<span class="cm">* </span>
+<span class="cm">    This is also fine.</span>
+<span class="cm">;</span>
+
+<span class="cm">/* **************************************</span>
+<span class="cm">You can put a lot of information here. </span>
+<span class="cm">For example, information about the program</span>
+<span class="cm">Author: </span>
+<span class="cm">Date:</span>
+<span class="cm">Title:</span>
+<span class="cm">Purpose:</span>
+<span class="cm">Version control:</span>
+<span class="cm">************************************** */</span>
+
+<span class="cm">/*</span>
+
+<span class="cm">This is a stronger form of comment, you can have code blocks in this</span>
+
+<span class="cm">proc sql noprint;</span>
+<span class="cm">quit;</span>
+
+<span class="cm">*/</span>
+
+<span class="c">/* This won't work! But why? */</span>
+<span class="cm">* </span>
+<span class="cm">    proc sql noprint;</span>
+<span class="kr">    quit;</span>
+;
 </pre></div>
 </div>
 </div>

@@ -7780,6 +7780,17 @@ Miles = Kilometers * <span class="m">0.62</span>;
 </div>
 </div>
 </div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5cdb7e31-937c-4f72-b970-8112e0158980">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Subsetting-Rows-using-Conditions">Subsetting Rows using Conditions<a class="anchor-link" href="#Subsetting-Rows-using-Conditions">¶</a></h3>
+</div>
+</div>
+</div>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38078655-a0a3-47f1-a2b7-9494febd2c97">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7904,8 +7915,8 @@ Miles = Kilometers * <span class="m">0.62</span>;
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>What's the difference between IF and WHERE?</p>
 <ul>
+<li>What's the difference between IF and WHERE?<ul>
 <li>It's how it is executed.<ul>
 <li>IF statements are excuted row by row. SAS will go to the first row, check the if condition, make a decision and then go to the next row.<ul>
 <li>To do this, SAS has to read all the data from the SET first and then check the if conditions.</li>
@@ -7919,6 +7930,8 @@ Miles = Kilometers * <span class="m">0.62</span>;
 <li>WHERE can be used as a <strong>data set option</strong> while IF cannot be used as a data set option.</li>
 <li>IF Statement can be used when specifying an INPUT statement, but WHERE cannot be used.</li>
 <li>IF can also be used under some specific condistions and more complex conditions. More later.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -7944,6 +7957,138 @@ Miles = Kilometers * <span class="m">0.62</span>;
 </div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43065d1d-2581-4097-b103-4d3b9ceee043">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Subsetting-Rows-using-SAS-Automatic-Variables">Subsetting Rows using SAS Automatic Variables<a class="anchor-link" href="#Subsetting-Rows-using-SAS-Automatic-Variables">¶</a></h4>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d2a52eae-f25a-4126-a583-5c91e472604e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>SAS has built in variables for each data set and when it is executing codes. We call them SAS Automatic variables<ul>
+<li><em><strong>_N_</strong></em> indicates the number of times SAS has looped through the DATA step.</li>
+<li><em><strong>_ERROR_</strong></em> has a value of 1 if there is a data error for that observation and 0 if there isn't.<ul>
+<li>Things that can cause data errors include invalid data (such as characters in a numeric field), conversion errors (like division by zero), and illegal arguments in functions (including log of zero).</li>
+</ul>
+</li>
+<li><em><strong>FIRST.variable</strong></em> and <em><strong>LAST.variable</strong></em> are available when you are using a BY statement in a DATA step.<ul>
+<li>The FIRST.variable will have a value of 1 when SAS is processing an observation with the first occurrence of a new value for that variable and a value of 0 for the other observations.</li>
+<li>The LAST.variable will have a value of 1 for an observation with the last occurrence of a value for that variable and the value 0 for the other observations.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b6524fda-b0f5-4567-a8d2-bce74c78c7d9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>For example, if we want to select the first observation of our data. What can we do?<ul>
+<li>You can actually do it more than one ways.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ba1bf28b-d585-4030-b29b-323ce3a938d4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-sas"><pre><span></span><span class="kr">DATA </span>kyotohotels_subset;
+<span class="k">SET</span> kyotohotels (obs = <span class="m">1</span>); <span class="c">/* &lt;-- Using data set options */</span>
+<span class="kr">RUN;</span>
+
+<span class="kr">DATA </span>kyotohotels_subset;
+<span class="k">SET</span> kyotohotels; 
+<span class="k">if</span> <span class="kc">_N_</span> = <span class="m">1</span>; <span class="c">/* &lt;-- Using automatic variable */</span>
+<span class="kr">RUN;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3ce0e816-c7f2-4602-97f8-1dbeaf5afa13">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>Look at this data. What if we want to select the first observations in each group (town)?</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=08004863-5e49-4aef-b604-aa9535a177f7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-sas"><pre><span></span><span class="kr">DATA </span>Town;
+<span class="k">INFILE</span> <span class="k">datalines</span>;
+<span class="k">INPUT</span> Town $ <span class="m">1-11</span> Rooms Price;
+<span class="k">datalines;</span>
+<span class="x">Princeton  5 5.2</span>
+<span class="x">Princeton  2 0.7 </span>
+<span class="x">Princeton  1 0.55 </span>
+<span class="x">Hopewell   3 0.4 </span>
+<span class="x">Hopewell   4 0.9 </span>
+<span class="x">Hopewell   5 1.1 </span>
+<span class="x">Burlington 6 0.7</span>
+<span class="x">Burlington 7 0.8</span>
+<span class="x">Burlington 8 0.9</span>
+<span class="x">;</span>
+<span class="kr">RUN;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8f905256-4391-4dd3-9185-5735930e148d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-sas"><pre><span></span><span class="kr">DATA </span>Town_subset;
+<span class="k">SET</span> Town; 
+<span class="k">by</span> town; <span class="c">/* &lt;-- FIRST.Var or LAST.Var only works when a BY is used. */</span>
+<span class="k">if</span> first<span class="m">.</span>town; <span class="c">/* Selecting the first obs in each group. */</span> <span class="c">/* we cannot use WHERE here.  */</span>
+<span class="kr">RUN;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ebad16da-f53c-4433-8e07-9ec9c5c5acef">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8630,6 +8775,25 @@ Miles = Kilometers * <span class="m">0.62</span>;
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="SAS-Functions">SAS Functions<a class="anchor-link" href="#SAS-Functions">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=efc52ede-aa76-4fbb-8320-dc996afc6dd8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>Funcations are important components of any programming language.</li>
+<li>To understand a language, we need to know what 3 things:<ol>
+<li>What to feed the function</li>
+<li>What the function does</li>
+<li>What the function spit out</li>
+</ol>
+</li>
+</ul>
 </div>
 </div>
 </div>

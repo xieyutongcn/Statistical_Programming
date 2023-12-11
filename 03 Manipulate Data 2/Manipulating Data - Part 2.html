@@ -7929,6 +7929,186 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Creating-Multiple-Data-Sets">Creating Multiple Data Sets<a class="anchor-link" href="#Creating-Multiple-Data-Sets">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=eb3dd723-a1e4-4646-a79c-433075976a9a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>When using DATA steps, we can create multiple data sets at the same time. All we need to do is:</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7832f25d-af14-437b-bdba-9e23781ece70">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-sas"><pre><span></span><span class="kr">data </span>sub1 sub2;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9bda2b2a-bea0-4594-8be1-afeaa4a14e72">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>Because data steps will create data sets first, this will create two data sets.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9fbdc584-6389-4f82-bf72-53c0e6ec8972">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>Then we need to load rows to the two data sets.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d4d417cb-bd11-4053-a257-d9ca914311cb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-sas"><pre><span></span><span class="kr">data </span>sub1 sub2;
+    <span class="k">set</span> SASHELP<span class="m">.</span>CARS<span class="kr">;</span>
+<span class="kr">run;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=731b8066-6d58-449c-b971-702dcd23baaa">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>If we run this, we shall get two itentical data sets. Both are the same as SASHELP.CARS;</li>
+<li>We can split SASHELP.CARS into sub1 and sub2 using some if conditions.<ul>
+<li>For example, how about we want sub1 to contain Asian cars and sub2 to contain all the others?</li>
+</ul>
+</li>
+<li>To achieve this, we will need to use a data step statement called <em><strong>OUTPUT</strong></em>.<ul>
+<li>By default, every DATA step contains an implicit OUTPUT statement at the end of each iteration that tells SAS to write observations to the data set or data sets that are being created.</li>
+<li>Placing an explicit OUTPUT statement in a DATA step overrides the automatic output, and SAS adds an observation to a data set only when an explicit OUTPUT statement is executed.</li>
+<li>Once you use an OUTPUT statement to write an observation to any one data set, however, there is no implicit OUTPUT statement at the end of the DATA step. In this situation, a DATA step writes an observation to a data set only when an explicit OUTPUT executes. You can use the OUTPUT statement alone or as part of an IF-THEN or SELECT statement or in DO-loop processing.</li>
+</ul>
+</li>
+<li>Let's look at a couple of examples.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=adfb4d21-fdbb-413f-8ff2-97e52b40d3d7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-sas"><pre><span></span><span class="kr">data </span>sub1 sub2; <span class="c">/* &lt;-- Creating 2 data sets */</span>
+    <span class="k">set</span> SASHELP<span class="m">.</span>CARS; <span class="c">/* &lt;-- Reading obs from SASHELP.CARS */</span>
+    <span class="k">if</span> Origin = <span class="s">"Asia"</span> <span class="k">then</span> <span class="k">OUTPUT</span> sub1;  <span class="c">/* &lt;-- Output Asian cars to sub1 */</span>
+    <span class="k">else</span> <span class="k">output</span> sub2;  <span class="c">/* &lt;-- Output others to sub2 */</span>
+<span class="kr">run;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8a25566e-4cf8-404f-ba99-950a7cbe8270">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>We can also use OUTPUT statement to duplicate or triplicate rows.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=bac27cca-0582-44df-845b-f189a6d7042c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-sas"><pre><span></span><span class="kr">data </span>CARs; <span class="c">/* &lt;-- Creating 2 data sets */</span>
+    <span class="k">set</span> SASHELP<span class="m">.</span>CARS; <span class="c">/* &lt;-- Reading obs from SASHELP.CARS */</span>
+    <span class="k">output</span>;
+    <span class="k">output</span>; <span class="c">/* &lt;-- Duplicating */</span>
+    <span class="k">output</span>; <span class="c">/* &lt;-- Triplicating */</span>
+<span class="kr">run;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=460b058d-c3e5-4479-a98c-819c492aad8f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>Why is this happenning?<ul>
+<li>Recall that SAS DATA steps execute line-by-line and row-by-row.</li>
+<li>In the code above we did the following in order<ol>
+<li><strong>data CARs;</strong> creates a data called CARS</li>
+<li><strong>set SASHELP.CARS;</strong> loads the first observation from SASHELP.CARS</li>
+<li><strong>output;</strong> outputs that observation to the new data called CARS</li>
+<li><strong>output;</strong> outputs the same observation to the new data because we have not read the 2nd observation yet.</li>
+<li><strong>output;</strong> outputs the same observation once more to the new data because we have not read the 2nd observation yet.</li>
+<li>Go the 2nd observation and redo the 3 output statements.</li>
+<li>Repeat until the end of the data.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85e7be2b-cd8c-47c2-bfad-7b10322e487f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Merge-Data">Merge Data<a class="anchor-link" href="#Merge-Data">¶</a></h2>
 </div>
 </div>

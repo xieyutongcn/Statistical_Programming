@@ -9544,6 +9544,187 @@ Num_Date = <span class="nb">mdy(</span>month, day, year);
 </div>
 </div>
 </div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0e75c49f-a2d4-4eb8-9148-9255548abc18">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Alternatively, we can use PUT and INPUT functions.</p>
+<ul>
+<li><em><strong>PUT</strong></em>: Returns a value using a specified <strong>format</strong>.</li>
+<li><em><strong>INPUT</strong></em>: Returns the value produced when a SAS expression that uses a specified <strong>informat</strong> expression is read
+As you see, the difference is format vs informat. What does it mean though? Let's look at an example. ad</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=59194096-0e6e-48ec-8701-dde58008248a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-sas"><pre><span></span><span class="kr">data </span>temp;
+    numeric = <span class="m">1234</span>; 
+    character=<span class="k">put</span>(numeric,<span class="m">6</span>.); <span class="c">/*The 6. here is the specified FORMAT*//*Converting Numeric Values to Character Value*/</span>
+<span class="kr">run;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a4f4b6b3-dd21-4c20-a4a9-a82eb3ebeb0b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-sas"><pre><span></span><span class="kr">data </span>temp;
+    character = <span class="s">"001234"</span>; 
+    numeric = <span class="k">input</span>(character,<span class="m">6</span>.); <span class="c">/*The 6. here is the specified INFORMAT*/</span> <span class="c">/*Converting Character Values to Numeric Value*/</span>
+<span class="kr">run;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cff39704-7eb4-46e8-9530-8786371ba610">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>If the date is loaded as a string, how do we turn it into a number?</p>
+<ul>
+<li>Right! Use INPUT function and INFORMAT.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=530fce1d-9698-4a41-a898-10dcdcd049a5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-sas"><pre><span></span><span class="kr">data </span>temp;
+    char_date = <span class="s">"1999-07-09"</span>; 
+    num_date = <span class="k">input</span>(char_date,YYMMDD10.); <span class="c">/*Converting Character Values to Numeric Value*/</span>
+    <span class="k">format</span> num_date YYMMDD10.<span class="kr">;</span>
+<span class="kr">run;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0678a969-a07c-4bdb-a79d-373d86fa323a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>DATETIME format</p>
+<ul>
+<li>DATETIME w.d<ul>
+<li><strong>w</strong> specifies the width of the output field.<ul>
+<li>Default: 16</li>
+<li>Range: 7–40</li>
+<li>Tip: SAS requires a minimum w value of 16 to write a SAS datetime value with the date, hour, and seconds. Add an additional two places to w and a value to d to return values with optional decimal fractions of seconds.</li>
+</ul>
+</li>
+<li><strong>d</strong> specifies the number of digits to the right of the decimal point in the seconds value. This argument is optional.<ul>
+<li>Range: 0–39</li>
+<li>Requirement: must be less than w</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ee8cc592-3217-469f-8cdc-a7a50a37a6f3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Common DATETIME INFORMATS</p>
+<p>You can find more here: <a href="https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.4/etsug/etsug_intervals_sect009.htm">Date and Datetime Informats</a></p>
+<table>
+<thead>
+<tr>
+<th>Informat/Example</th>
+<th>Description</th>
+<th>Width Range</th>
+<th>Default Width</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ANYDTDTEw.</td>
+<td>Reads and extracts the date value from any of the following: DATE, DATETIME, DDMMYY, JULIAN, MDYAMPM, MMDDYY, MMxYY<em>, MONYY, TIME, YMDDTTM, YYMMDD, YYQ, YYxMM</em>, month-day-year</td>
+<td>5–32</td>
+<td>9</td>
+</tr>
+<tr>
+<td>ANYDTDTMw.</td>
+<td>Reads and extracts the datetime value from anyof the following: DATE, DATETIME, DDMMYY,JULIAN, MMDDYY, MMxYY<em>, MONYY,TIME, YYMMDD, YYQ, YYxMM</em>,month-day-year</td>
+<td>1–32</td>
+<td>19</td>
+</tr>
+<tr>
+<td>ANYDTTMEw.</td>
+<td>Reads and extracts the time value from anyof the following: DATE, DATETIME, DDMMYY,JULIAN, MMDDYY, MONYY, TIME,YYMMDD, YYQ, month-day-year</td>
+<td>1–32</td>
+<td>8</td>
+</tr>
+<tr>
+<td>DATEw.</td>
+<td>Day, month abbreviation, and year:</td>
+<td>7–32</td>
+<td>7</td>
+</tr>
+<tr>
+<td>DATETIMEw.d</td>
+<td>Date and time: ddmonyy:hh:mm:ss</td>
+<td>13–40</td>
+<td>18</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a131feca-f6ab-4f36-af34-6acb445a19a2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-sas"><pre><span></span><span class="kr">data </span>temp;
+    char_date = <span class="s">"1999-07-09:11:20:23"</span>; 
+    num_date = <span class="k">input</span>(char_date,ANYDTDTM19.); <span class="c">/*Converting Character Values to Numeric Value*/</span>
+    <span class="k">format</span> num_date datetime16.<span class="kr">;</span>
+<span class="kr">run;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e95f2836-792f-4855-ace2-7d7eb933d0b6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
